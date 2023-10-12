@@ -6,6 +6,8 @@
 * A Unit Test test script using JUnit Test framework
 * A CI (Continuous Integration) script running on GitHub Actions
 
+![Test-script with JUnit](https://github.com/tlinh-something/math-util-mvn/blob/main/screenshots/test-script%20with%20junit.png)
+
 ##### Connect me via linhntse171620@fpt.edu.vn
 
 ##### Copyright &#169; 2023 linh.hi
