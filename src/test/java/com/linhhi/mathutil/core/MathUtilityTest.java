@@ -46,3 +46,4 @@ public class MathUtilityTest {
         assertEquals(720, MathUtility.getFactorial(6));
     }
 }
+
