@@ -37,6 +37,7 @@ public class MathUtilityTest {
     @Test
     public void verifyFactorialGivenRightArgument1ReturnsOk(){
         assertEquals(1, MathUtility.getFactorial(1));
+        //so sánh xem 1! có bằng 1 hay không
     }
     
     
