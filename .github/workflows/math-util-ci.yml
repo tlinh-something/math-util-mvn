@@ -2,22 +2,31 @@ name: Math Utility Repo applying CI      #Tên của nhóm công việc cần ph
 
 on:
   push:
-    branches: [ "main" ]                # Bất kì khi nào mà ai đó push code lên main
+    branches: [ "main" ]                #Bất kì khi nào mà ai đó push code lên main
   pull_request:
     branches: [ "main" ]
 
-jobs:                                   # thì làm việc ở dưới đây
+jobs:                                   #Thì làm việc ở dưới đây
   build:
 
-    runs-on: ubuntu-latest              # 1. Mượn 1 cái server của Mỹ, cài sẵn hệ điều hành Ubuntu
+    runs-on: ubuntu-latest              #1. Mượn 1 cái server của Mỹ, cài sẵn hệ điều hành Ubuntu
 
-    steps:                              # 2. Làm thêm các bước sau trên server vừa mượn
-    - uses: actions/checkout@v3         # 2.1 Lấy toàn bộ code từ kho chuyển sang server
-    - name: Set up JDK 19               # 2.2 Mượn JDK nào đó trên server, 19
+    steps:                              #2. Làm thêm các bước sau trên server vừa mượn
+    - uses: actions/checkout@v3         #2.1. Lấy toàn bộ code từ kho chuyển sang server
+    - name: Set up JDK 19               #2.2. Mượn JDK nào đó trên server, 19
       uses: actions/setup-java@v3
       with:
         java-version: '19'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven           # 2.3 Chuẩn bị chạy lệnh đóng gói app, chạy luôn Unit Test
+    - name: Build with Maven           #2.3. Chuẩn bị chạy lệnh đóng gói app, chạy luôn Unit Test
       run: mvn -B package --file pom.xml
+      
+    - name: Distribute jar-war file                     #Gửi file .jar .war đi đâu, CD nhảy vào ...
+      run: mkdir staging && cp target/*.jar staging     #Tạo thư mục staging chứa file .jar .war sau khi build      
+     
+    - name: Make hyperlink to jar-war file   #Tạo hyperlink để download build 
+      uses: actions/upload-artifact@v1
+      with:
+        name: HAY-DOWNLOAD-EM-JAR-O-DAY      #Bản build .JAR/.WAR ĐƯỢC NÉN Ở LINK KẾ BÊN
+        path: staging
